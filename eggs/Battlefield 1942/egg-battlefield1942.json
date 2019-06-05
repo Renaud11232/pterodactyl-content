@@ -1,0 +1,54 @@
+{
+    "_comment": "DO NOT EDIT: FILE GENERATED AUTOMATICALLY BY PTERODACTYL PANEL - PTERODACTYL.IO",
+    "meta": {
+        "version": "PTDL_v1"
+    },
+    "exported_at": "2019-06-05T23:39:49+02:00",
+    "name": "Battlefield 1942",
+    "author": "gaspardrenaud@hotmail.com",
+    "description": "Battlefield 1942 Dedicated Server",
+    "image": "renaud11232\/pterodactyl:bf1942",
+    "startup": ".\/start.sh +statusMonitor 1",
+    "config": {
+        "files": "{}",
+        "startup": "{\r\n    \"done\": \"linked binary\",\r\n    \"userInteraction\": []\r\n}",
+        "logs": "{}",
+        "stop": "quit"
+    },
+    "scripts": {
+        "installation": {
+            "script": "#!\/bin\/bash\r\n\r\napt update -y\r\napt install -y tar curl\r\n\r\ncd \/tmp\r\n\r\ncurl -sSL -o installer.run ${INSTALL_URL}\r\nchmod +x installer.run\r\n.\/installer.run --target \/tmp\/bf1942 --confirm <<EOF\r\ny\r\nn\r\nEOF\r\n\r\nif [ ! -z \"${UPDATE_URL}\" ]; then\r\n    curl -sSL -o update.tar.gz ${UPDATE_URL}\r\n    tar xzf update.tar.gz\r\nfi\r\n\r\nif [ ! -z \"${PATCH_URL}\" ]; then\r\n    curl -sSL -o patch.tar.gz ${PATCH_URL}\r\n    tar xzf patch.tar.gz\r\nfi\r\n\r\ncd bf1942\r\ncp -r * \/mnt\/server\/",
+            "container": "ubuntu:bionic",
+            "entrypoint": "bash"
+        }
+    },
+    "variables": [
+        {
+            "name": "Download URL",
+            "description": "The URL to download the server installer file",
+            "env_variable": "INSTALL_URL",
+            "default_value": "",
+            "user_viewable": 0,
+            "user_editable": 0,
+            "rules": "required|string"
+        },
+        {
+            "name": "Update URL",
+            "description": "The URL to download an update file",
+            "env_variable": "UPDATE_URL",
+            "default_value": "",
+            "user_viewable": 0,
+            "user_editable": 0,
+            "rules": "string"
+        },
+        {
+            "name": "Patch URL",
+            "description": "The URL to download the patch to avoid the GameSpy shutdown",
+            "env_variable": "PATCH_URL",
+            "default_value": "",
+            "user_viewable": 0,
+            "user_editable": 0,
+            "rules": "string"
+        }
+    ]
+}
