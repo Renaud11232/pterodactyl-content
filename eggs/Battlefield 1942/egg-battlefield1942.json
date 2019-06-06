@@ -3,7 +3,7 @@
     "meta": {
         "version": "PTDL_v1"
     },
-    "exported_at": "2019-06-05T23:39:49+02:00",
+    "exported_at": "2019-06-06T10:37:08+02:00",
     "name": "Battlefield 1942",
     "author": "gaspardrenaud@hotmail.com",
     "description": "Battlefield 1942 Dedicated Server",
@@ -27,7 +27,7 @@
             "name": "Download URL",
             "description": "The URL to download the server installer file",
             "env_variable": "INSTALL_URL",
-            "default_value": "",
+            "default_value": "http:\/\/fizweb.elte.hu\/battlefield\/Battlefield-1942\/Server-Linux\/bf1942_lnxded-1.6-rc2.run",
             "user_viewable": 0,
             "user_editable": 0,
             "rules": "required|string"
@@ -36,7 +36,7 @@
             "name": "Update URL",
             "description": "The URL to download an update file",
             "env_variable": "UPDATE_URL",
-            "default_value": "",
+            "default_value": "http:\/\/fizweb.elte.hu\/battlefield\/Battlefield-1942\/Server-Linux\/bf1942-update-1.61.tar.gz",
             "user_viewable": 0,
             "user_editable": 0,
             "rules": "string"
@@ -45,7 +45,7 @@
             "name": "Patch URL",
             "description": "The URL to download the patch to avoid the GameSpy shutdown",
             "env_variable": "PATCH_URL",
-            "default_value": "",
+            "default_value": "http:\/\/team-simple.org\/download\/bf1942_lnxded-1.61-patched.tar.gz",
             "user_viewable": 0,
             "user_editable": 0,
             "rules": "string"
