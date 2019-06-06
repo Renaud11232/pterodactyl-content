@@ -1,0 +1,36 @@
+{
+    "_comment": "DO NOT EDIT: FILE GENERATED AUTOMATICALLY BY PTERODACTYL PANEL - PTERODACTYL.IO",
+    "meta": {
+        "version": "PTDL_v1"
+    },
+    "exported_at": "2019-06-06T16:32:05+02:00",
+    "name": "Battlefield Vietnam",
+    "author": "gaspardrenaud@hotmail.com",
+    "description": "Battlefield Vietnam Dedicated Server",
+    "image": "renaud11232\/pterodactyl:bfvietnam",
+    "startup": ".\/start.sh +statusMonitor 1",
+    "config": {
+        "files": "{}",
+        "startup": "{\r\n    \"done\": \"linked binary\",\r\n    \"userInteraction\": []\r\n}",
+        "logs": "{}",
+        "stop": "quit"
+    },
+    "scripts": {
+        "installation": {
+            "script": "#!\/bin\/bash\r\n\r\napt update -y\r\napt install -y tar curl unzip\r\n\r\ncd \/tmp\r\n\r\ncurl -sSL -o installer.zip ${INSTALL_URL}\r\nunzip installer.zip\r\nchmod +x bfv_linded-v1.21-20041207.1627.run\r\n.\/bfv_linded-v1.21-20041207.1627.run --target \/tmp\/bfv --confirm <<EOF\r\ny\r\nn\r\nEOF\r\n\r\ncd bfv\r\ncp -r * \/mnt\/server\/",
+            "container": "ubuntu:bionic",
+            "entrypoint": "bash"
+        }
+    },
+    "variables": [
+        {
+            "name": "Download ZIP",
+            "description": "The URL where to download the zipped installer",
+            "env_variable": "INSTALL_URL",
+            "default_value": "http:\/\/fizweb.elte.hu\/battlefield\/Battlefield-Vietnam\/Server-Linux\/bfv_linded-v1.21-20041207.1627.zip",
+            "user_viewable": 0,
+            "user_editable": 0,
+            "rules": "required|string"
+        }
+    ]
+}
